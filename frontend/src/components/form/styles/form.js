@@ -1,5 +1,5 @@
-import styled from 'styled-components/macro';
-import { Link as ReachRouterLink } from 'react-router-dom';
+import styled from "styled-components/macro";
+import { Link as ReachRouterLink } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -55,7 +55,7 @@ export const Link = styled(ReachRouterLink)`
   text-decoration: none;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 `;
 

@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { Form } from "../components";
 import { HeaderContainer } from "../containers/header";
 import { FooterContainer } from "../containers/footer";
+
+import { Spinner } from "beautiful-react-ui";
 import * as ROUTES from "../constants/routes";
 
 export default function SignUp() {
@@ -13,10 +15,17 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const [showSpinner, setShowSpinner] = useState(false);
+
   const isInvalid = firstName === "" || password === "" || emailAddress === "";
 
   const handleSignup = (event) => {
     event.preventDefault();
+    setShowSpinner(true);
+
+    setTimeout(() => {
+      setShowSpinner(false);
+    }, 1500);
 
     // return firebase
     //   .auth()
@@ -54,6 +63,7 @@ export default function SignUp() {
             />
             <Form.Input
               placeholder="Email address"
+              type="email"
               value={emailAddress}
               onChange={({ target }) => setEmailAddress(target.value)}
             />
@@ -64,6 +74,18 @@ export default function SignUp() {
               placeholder="Password"
               onChange={({ target }) => setPassword(target.value)}
             />
+            {showSpinner && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {" "}
+                <Spinner color="secondary" />
+              </div>
+            )}
             <Form.Submit
               disabled={isInvalid}
               type="submit"
