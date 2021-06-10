@@ -1,4 +1,4 @@
-# Netflix clone made with REACT, MYSQL, AND SPRING BOOT
+# Netflix  made with   MYSQL(Database), SPRING BOOT(Java), And REACT(Typescript and Javascript),
 
 ## FRONTEND
 
