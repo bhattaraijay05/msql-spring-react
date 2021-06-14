@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Home, SignIn, SignUp, Main } from "./pages";
+import { Home, SignIn, SignUp, Main, SearchPage } from "./pages";
 
 function App() {
   return (
@@ -18,6 +18,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignUp />
+          </Route>
+          <Route exact path="/search/:movie">
+            <SearchPage />
           </Route>
         </Switch>
       </Router>

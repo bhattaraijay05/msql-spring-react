@@ -3,6 +3,11 @@ import { useHistory } from "react-router-dom";
 import { Form } from "../components";
 import { HeaderContainer } from "../containers/header";
 import { FooterContainer } from "../containers/footer";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
 
 import { Spinner } from "beautiful-react-ui";
 import * as ROUTES from "../constants/routes";
@@ -13,6 +18,7 @@ export default function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [value, setValue] = React.useState("user");
   const [error, setError] = useState("");
 
   const [showSpinner, setShowSpinner] = useState(false);
@@ -48,6 +54,9 @@ export default function SignUp() {
     //   });
   };
 
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
   return (
     <>
       <HeaderContainer>
@@ -74,6 +83,36 @@ export default function SignUp() {
               placeholder="Password"
               onChange={({ target }) => setPassword(target.value)}
             />
+            <FormControl component="fieldset">
+              <FormLabel
+                component="legend"
+                style={{
+                  color: "white",
+                }}
+              >
+                Sign up as
+              </FormLabel>
+              <RadioGroup
+                aria-label="gender"
+                name="gender1"
+                value={value}
+                onChange={handleChange}
+                style={{
+                  color: "white",
+                }}
+              >
+                <FormControlLabel
+                  value="user"
+                  control={<Radio />}
+                  label="User"
+                />
+                <FormControlLabel
+                  value="editor"
+                  control={<Radio />}
+                  label="Editor"
+                />
+              </RadioGroup>
+            </FormControl>
             {showSpinner && (
               <div
                 style={{
