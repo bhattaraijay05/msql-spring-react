@@ -14,16 +14,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 40)
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true, length = 45)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 64)
     private String password;
 
-    @Column(name = "accountType")
+    @Column(name = "accountType", nullable = false, length = 20)
     private String accountType;
 
     public Integer getId() {
