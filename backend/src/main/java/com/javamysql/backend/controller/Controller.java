@@ -23,7 +23,7 @@ import com.javamysql.backend.repository.Repo;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/apis")
 public class Controller {
     @Autowired
     Repo tutorialRepository;

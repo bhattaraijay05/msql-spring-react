@@ -24,7 +24,7 @@ public class User {
     private String password;
 
     @Column(name = "accountType", nullable = false, length = 20)
-    private String accountType;
+    private Integer accountType;
 
     public Integer getId() {
         return id;
@@ -50,11 +50,11 @@ public class User {
         this.email = email;
     }
 
-    public String getAccountType() {
+    public Integer getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
+    public void setAccountType(Integer accountType) {
         this.accountType = accountType;
     }
 

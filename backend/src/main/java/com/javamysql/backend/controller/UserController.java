@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(path = "/demo")
-public class MainController {
+public class UserController {
     @Autowired
     private UserRepo userRepository;
 
