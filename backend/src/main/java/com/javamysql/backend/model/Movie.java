@@ -1,5 +1,7 @@
 package com.javamysql.backend.model;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,7 +23,7 @@ public class Movie {
 
     @Column(name = "releaseDate", nullable = false, length = 64)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private String releaseDate;
+    private Date releaseDate;
 
     @Column(name = "genreId", nullable = false, length = 20)
     private Integer genreId;
@@ -77,14 +79,14 @@ public class Movie {
     /**
      * @return Date return the releaseDate
      */
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
     /**
      * @param releaseDate the releaseDate to set
      */
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
