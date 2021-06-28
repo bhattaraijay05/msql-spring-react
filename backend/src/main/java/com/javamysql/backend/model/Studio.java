@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "studio")
 public class Studio {
@@ -14,6 +16,7 @@ public class Studio {
     @Column(name = "studioName", nullable = false, length = 40)
     private String studioName;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "studio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Movie> movie;
 

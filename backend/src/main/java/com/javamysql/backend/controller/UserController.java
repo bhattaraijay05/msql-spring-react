@@ -21,55 +21,63 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping(path = "/demo")
+@RequestMapping(path = "/users")
 public class UserController {
     @Autowired
     private UserRepo userRepository;
-
-    @PostMapping(path = "/add", consumes = "application/json", produces = "application/json") // Map ONLY POST Requests
-    public ResponseEntity<User> addNewUser(@RequestBody User user) {
-        User _user = userRepository.save(user);
-        return new ResponseEntity<>(_user, HttpStatus.CREATED);
-    }
 
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") int id) {
-        try {
-            userRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
+    @GetMapping(path = "/")
+    public @ResponseBody Iterable<User> getAllUserss() {
+        return userRepository.findAll();
     }
 
-    @DeleteMapping("/delete/all")
-    public ResponseEntity<HttpStatus> deleteAllTutorials() {
-        try {
-            userRepository.deleteAll();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-        }
+    // @PostMapping(path = "/add", consumes = "application/json", produces =
+    // "application/json") // Map ONLY POST Requests
+    // public ResponseEntity<User> addNewUser(@RequestBody User user) {
+    // User _user = userRepository.save(user);
+    // return new ResponseEntity<>(_user, HttpStatus.CREATED);
+    // }
 
-    }
+    // @DeleteMapping("/delete/{id}")
+    // public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") int id)
+    // {
+    // try {
+    // userRepository.deleteById(id);
+    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // } catch (Exception e) {
+    // return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+    // }
+    // }
 
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<User> updateTutorial(@PathVariable("id") int id, @RequestBody User tutorial) {
-        Optional<User> tutorialData = userRepository.findById(id);
+    // @DeleteMapping("/delete/all")
+    // public ResponseEntity<HttpStatus> deleteAllTutorials() {
+    // try {
+    // userRepository.deleteAll();
+    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    // } catch (Exception e) {
+    // return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+    // }
 
-        if (tutorialData.isPresent()) {
-            User _tutorial = tutorialData.get();
-            _tutorial.setName(tutorial.getName());
-            _tutorial.setEmail(tutorial.getEmail());
-            return new ResponseEntity<>(userRepository.save(_tutorial), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+    // }
+
+    // @PutMapping("/edit/{id}")
+    // public ResponseEntity<User> updateTutorial(@PathVariable("id") int id,
+    // @RequestBody User tutorial) {
+    // Optional<User> tutorialData = userRepository.findById(id);
+
+    // if (tutorialData.isPresent()) {
+    // User _tutorial = tutorialData.get();
+    // _tutorial.setName(tutorial.getName());
+    // _tutorial.setEmail(tutorial.getEmail());
+    // return new ResponseEntity<>(userRepository.save(_tutorial), HttpStatus.OK);
+    // } else {
+    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // }
+    // }
 
 }

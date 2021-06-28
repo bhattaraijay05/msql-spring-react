@@ -1,6 +1,9 @@
 package com.javamysql.backend.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -20,12 +23,12 @@ public class User implements Serializable {
     @Column(name = "password", nullable = false, length = 64)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "planId", nullable = false)
+    @JsonManagedReference
     private Plan plan;
 
     public User() {
-
     }
 
     public User(Integer userid, String name, String email, String password, Plan plan) {
@@ -95,14 +98,14 @@ public class User implements Serializable {
     /**
      * @return Plan return the plan
      */
-    public Plan getplan() {
+    public Plan getPlan() {
         return plan;
     }
 
     /**
      * @param plan the plan to set
      */
-    public void setplan(Plan plan) {
+    public void setPlan(Plan plan) {
         this.plan = plan;
     }
 

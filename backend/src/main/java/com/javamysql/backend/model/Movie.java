@@ -1,11 +1,11 @@
 package com.javamysql.backend.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "movie")
@@ -26,16 +26,19 @@ public class Movie implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private String releaseDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "studioId", nullable = false)
+    @JsonManagedReference
     private Studio studio;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "trailerId", nullable = false)
+    @JsonManagedReference
     private Trailer trailer;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "posterId", nullable = false)
+    @JsonManagedReference
     private Poster poster;
 
     public Movie() {
