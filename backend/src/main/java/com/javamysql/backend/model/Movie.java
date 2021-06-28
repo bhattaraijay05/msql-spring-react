@@ -22,7 +22,7 @@ public class Movie implements Serializable {
     @Column(name = "description", nullable = false, length = 500)
     private String description;
 
-    @Column(name = "releaseDate", nullable = false, length = 64)
+    @Column(name = "releaseDate", nullable = false, length = 64, columnDefinition = "Date")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private String releaseDate;
 
