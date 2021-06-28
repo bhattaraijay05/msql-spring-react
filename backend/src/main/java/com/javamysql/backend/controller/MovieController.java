@@ -24,6 +24,5 @@ public class MovieController {
     public ResponseEntity<Movie> addNewUser(@RequestBody Movie movie) {
         Movie _user = movieRepository.save(movie);
         return new ResponseEntity<>(_user, HttpStatus.CREATED);
-
     }
 }

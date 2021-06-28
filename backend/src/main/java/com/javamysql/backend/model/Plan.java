@@ -1,16 +1,30 @@
 package com.javamysql.backend.model;
 
 import javax.persistence.*;
+import java.util.Set;
+import java.io.Serializable;
 
-@Entity // This tells Hibernate to make a table out of this class
-@Table(name = "plan")
-public class Plan {
+@Entity
+@Table(name = "plans")
+public class Plan implements Serializable {
     @Id
-    @Column(name = "planId", nullable = false, length = 40)
+    @Column(name = "planId", unique = true, nullable = false, length = 40)
     private Integer planId;
 
     @Column(name = "planName", nullable = false, length = 40)
     private String planName;
+
+    @OneToMany(mappedBy = "plan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<User> user;
+
+    public Plan() {
+
+    }
+
+    public Plan(Integer planId, String planName) {
+        this.planId = planId;
+        this.planName = planName;
+    }
 
     /**
      * @return Integer return the planId

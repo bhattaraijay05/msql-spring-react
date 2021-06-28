@@ -1,12 +1,78 @@
 package com.javamysql.backend;
 
+import com.javamysql.backend.model.Movie;
+import com.javamysql.backend.model.Plan;
+import com.javamysql.backend.model.Poster;
+import com.javamysql.backend.model.Studio;
+import com.javamysql.backend.model.Trailer;
+import com.javamysql.backend.model.User;
+import com.javamysql.backend.repository.MovieRepo;
+import com.javamysql.backend.repository.PlanRepo;
+import com.javamysql.backend.repository.PosterRepo;
+import com.javamysql.backend.repository.StudioRepo;
+import com.javamysql.backend.repository.TrailerRepo;
+import com.javamysql.backend.repository.UserRepo;
+
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.*;
 
 @SpringBootApplication
 public class BackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
+	}
+
+	@Bean
+	public CommandLineRunner userMapDemo(PlanRepo planRepo, UserRepo userRepo) {
+		return args -> {
+
+			// create a new book
+			Plan plan1 = new Plan(1, "Free");
+			Plan plan2 = new Plan(2, "Premium");
+			// save the book
+			planRepo.save(plan1);
+			planRepo.save(plan2);
+
+			// create and save new pages
+			userRepo.save(new User(1, "Name", "aa@gmail.com", "Introduction", plan1));
+			userRepo.save(new User(65, "More Name", "ab@gmail.com", "Java 8", plan2));
+			userRepo.save(new User(69, "More Name", "aba@gmail.com", "Java 8", plan2));
+			userRepo.save(new User(95, "More name", "aaav@gmail.com", "Concurrency", plan1));
+		};
+	}
+
+	@Bean
+	public CommandLineRunner movieMapDemo(MovieRepo movieRepo, PosterRepo posterRepo, StudioRepo studioRepo,
+			TrailerRepo trailerRepo) {
+		return args -> {
+
+			// create a new book
+			Studio studio1 = new Studio(154, "Marvel");
+			Studio studio2 = new Studio(155, "Disney");
+			// save the book
+			studioRepo.save(studio1);
+			studioRepo.save(studio2);
+
+			Trailer trailer1 = new Trailer(1574, "https://www.youtube.com/watch?v=TcMBFSGVi1c");
+			Trailer trailer2 = new Trailer(1575, "https://www.youtube.com/watch?v=LKFuXETZUsI");
+
+			trailerRepo.save(trailer1);
+			trailerRepo.save(trailer2);
+
+			Poster poster1 = new Poster(12563,
+					"https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg");
+			Poster poster2 = new Poster(12565,
+					"https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg");
+
+			posterRepo.save(poster1);
+			posterRepo.save(poster2);
+
+			// create and save new pages
+			movieRepo.save(new Movie(18, "Avenger", "This is Endgame", "20200518", studio1, trailer1, poster1));
+			movieRepo.save(new Movie(19, "Moana", "This is Moana", "20160503", studio2, trailer2, poster2));
+		};
 	}
 
 }

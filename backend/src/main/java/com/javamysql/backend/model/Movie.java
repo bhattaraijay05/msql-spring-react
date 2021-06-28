@@ -1,5 +1,6 @@
 package com.javamysql.backend.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Table(name = "movie")
-public class Movie {
+public class Movie implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,16 +24,33 @@ public class Movie {
 
     @Column(name = "releaseDate", nullable = false, length = 64)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date releaseDate;
+    private String releaseDate;
 
-    @Column(name = "genreId", nullable = false, length = 20)
-    private Integer genreId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "studioId", nullable = false)
+    private Studio studio;
 
-    @Column(name = "rating", nullable = false, length = 20)
-    private Integer rating;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "trailerId", nullable = false)
+    private Trailer trailer;
 
-    @Column(name = "posterId", nullable = false, length = 20)
-    private Integer posterId;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "posterId", nullable = false)
+    private Poster poster;
+
+    public Movie() {
+    }
+
+    public Movie(Integer movieId, String name, String description, String releaseDate, Studio studio, Trailer trailer,
+            Poster poster) {
+        this.movieId = movieId;
+        this.name = name;
+        this.description = description;
+        this.releaseDate = releaseDate;
+        this.studio = studio;
+        this.trailer = trailer;
+        this.poster = poster;
+    }
 
     /**
      * @return Integer return the movieId
@@ -77,59 +95,59 @@ public class Movie {
     }
 
     /**
-     * @return Date return the releaseDate
+     * @return String return the releaseDate
      */
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
     /**
      * @param releaseDate the releaseDate to set
      */
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
     /**
-     * @return Integer return the genreId
+     * @return Studio return the studio
      */
-    public Integer getGenreId() {
-        return genreId;
+    public Studio getStudio() {
+        return studio;
     }
 
     /**
-     * @param genreId the genreId to set
+     * @param studio the studio to set
      */
-    public void setGenreId(Integer genreId) {
-        this.genreId = genreId;
+    public void setStudio(Studio studio) {
+        this.studio = studio;
     }
 
     /**
-     * @return Integer return the rating
+     * @return Trailer return the trailer
      */
-    public Integer getRating() {
-        return rating;
+    public Trailer getTrailer() {
+        return trailer;
     }
 
     /**
-     * @param rating the rating to set
+     * @param trailer the trailer to set
      */
-    public void setRating(Integer rating) {
-        this.rating = rating;
+    public void setTrailer(Trailer trailer) {
+        this.trailer = trailer;
     }
 
     /**
-     * @return Integer return the posterId
+     * @return Poster return the poster
      */
-    public Integer getPosterId() {
-        return posterId;
+    public Poster getPoster() {
+        return poster;
     }
 
     /**
-     * @param posterId the posterId to set
+     * @param poster the poster to set
      */
-    public void setPosterId(Integer posterId) {
-        this.posterId = posterId;
+    public void setPoster(Poster poster) {
+        this.poster = poster;
     }
 
 }

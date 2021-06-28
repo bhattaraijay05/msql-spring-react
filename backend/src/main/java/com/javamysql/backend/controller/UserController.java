@@ -30,7 +30,6 @@ public class UserController {
     public ResponseEntity<User> addNewUser(@RequestBody User user) {
         User _user = userRepository.save(user);
         return new ResponseEntity<>(_user, HttpStatus.CREATED);
-
     }
 
     @GetMapping(path = "/all")
