@@ -28,17 +28,17 @@ public class Movie implements Serializable {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "studioId", nullable = false)
-    @JsonManagedReference
+    // @JsonManagedReference
     private Studio studio;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "trailerId", nullable = false)
-    @JsonManagedReference
+    // @JsonManagedReference
     private Trailer trailer;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "posterId", nullable = false)
-    @JsonManagedReference
+    // @JsonManagedReference
     private Poster poster;
 
     public Movie() {

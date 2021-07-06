@@ -29,11 +29,11 @@ function Nav() {
       <Header.Frame style={{ height: 30 }}>
         {!searchTerm && (
           <Header.Group>
-            <Header.Logo
+            {/* <Header.Logo
               to="/browse"
               src="/images/logo/netflix.png"
               alt="Netflix Logo"
-            />
+            /> */}
           </Header.Group>
         )}
 

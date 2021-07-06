@@ -3,6 +3,7 @@ package com.javamysql.backend.controller;
 import java.util.Optional;
 
 import com.javamysql.backend.model.User;
+import com.javamysql.backend.repository.PlanRepo;
 import com.javamysql.backend.repository.UserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +37,12 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    // @PostMapping(path = "/add", consumes = "application/json", produces =
-    // "application/json") // Map ONLY POST Requests
-    // public ResponseEntity<User> addNewUser(@RequestBody User user) {
-    // User _user = userRepository.save(user);
-    // return new ResponseEntity<>(_user, HttpStatus.CREATED);
-    // }
+    @PostMapping(path = "/add", consumes = { "application/json" }, produces = "application/json") // Map ONLY POST
+                                                                                                  // Requests
+    public ResponseEntity<User> addNewUser(@RequestBody User user) {
+        User _user = userRepository.save(user);
+        return new ResponseEntity<>(_user, HttpStatus.CREATED);
+    }
 
     // @DeleteMapping("/delete/{id}")
     // public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") int id)

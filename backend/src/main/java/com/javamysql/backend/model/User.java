@@ -25,7 +25,7 @@ public class User implements Serializable {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "planId", nullable = false)
-    @JsonManagedReference
+    // @JsonManagedReference
     private Plan plan;
 
     public User() {
