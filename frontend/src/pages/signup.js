@@ -52,9 +52,9 @@ export default function SignUp() {
 				plan: value === "user" ? plan1 : plan2,
 			})
 			.then(function (response) {
-				console.log(response);
+				history.push("/browse");
 			})
-			.catch((e) => console.log(e));
+			.catch((e) => setError(e.message));
 
 		setShowSpinner(false);
 	};

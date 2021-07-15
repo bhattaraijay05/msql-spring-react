@@ -1,11 +1,13 @@
 package com.javamysql.backend;
 
+import com.javamysql.backend.model.Genre;
 import com.javamysql.backend.model.Movie;
 import com.javamysql.backend.model.Plan;
 import com.javamysql.backend.model.Poster;
 import com.javamysql.backend.model.Studio;
 import com.javamysql.backend.model.Trailer;
 import com.javamysql.backend.model.User;
+import com.javamysql.backend.repository.GenreRepo;
 import com.javamysql.backend.repository.MovieRepo;
 import com.javamysql.backend.repository.PlanRepo;
 import com.javamysql.backend.repository.PosterRepo;
@@ -47,13 +49,18 @@ public class BackendApplication {
 	// @Bean
 	// public CommandLineRunner movieMapDemo(MovieRepo movieRepo, PosterRepo
 	// posterRepo, StudioRepo studioRepo,
-	// TrailerRepo trailerRepo) {
+	// TrailerRepo trailerRepo, GenreRepo genreRepo) {
 	// return args -> {
 
-	// // create a new book
-	// Studio studio1 = new Studio(154, "Marvel");
-	// Studio studio2 = new Studio(155, "Disney");
-	// // save the book
+	// Genre genre1 = new Genre(145, "comedy");
+	// Genre genre2 = new Genre(146, "drama");
+
+	// genreRepo.save(genre1);
+	// genreRepo.save(genre2);
+
+	// Studio studio1 = new Studio(154, "Marvel", genre1);
+	// Studio studio2 = new Studio(155, "Disney", genre2);
+
 	// studioRepo.save(studio1);
 	// studioRepo.save(studio2);
 

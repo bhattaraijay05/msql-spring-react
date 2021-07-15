@@ -16,17 +16,21 @@ public class Studio {
     @Column(name = "studioName", nullable = false, length = 40)
     private String studioName;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "genreId", nullable = false)
+    private Genre genre;
+
     @JsonBackReference
-    @OneToMany(mappedBy = "studio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "studio", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Movie> movie;
 
     public Studio() {
-
     }
 
-    public Studio(Integer studioId, String studioName) {
+    public Studio(Integer studioId, String studioName, Genre genre) {
         this.studioId = studioId;
         this.studioName = studioName;
+        this.genre = genre;
     }
 
     /**
@@ -55,6 +59,20 @@ public class Studio {
      */
     public void setStudioName(String studioName) {
         this.studioName = studioName;
+    }
+
+    /**
+     * @return Genre return the genre
+     */
+    public Genre getGenre() {
+        return genre;
+    }
+
+    /**
+     * @param genre the genre to set
+     */
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     /**
