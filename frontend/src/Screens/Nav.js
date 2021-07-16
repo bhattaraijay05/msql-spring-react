@@ -27,15 +27,13 @@ function Nav() {
 	return (
 		<div className={`nav ${show && "nav_black"}`}>
 			<Header.Frame style={{ height: 30 }}>
-				{!searchTerm && (
-					<Header.Group>
-						<Header.Logo
-							to="/browse"
-							src="/images/logo/netflix.png"
-							alt="Netflix Logo"
-						/>
-					</Header.Group>
-				)}
+				<Header.Group>
+					<Header.Logo
+						to="/browse"
+						src="/images/logo/netflix.png"
+						alt="Netflix Logo"
+					/>
+				</Header.Group>
 
 				<Header.Group>
 					<Header.Search

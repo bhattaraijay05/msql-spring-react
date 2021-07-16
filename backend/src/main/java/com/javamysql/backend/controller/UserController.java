@@ -1,5 +1,6 @@
 package com.javamysql.backend.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.javamysql.backend.model.User;
@@ -32,9 +33,9 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping(path = "/")
-    public @ResponseBody Iterable<User> getAllUserss() {
-        return userRepository.findAll();
+    @GetMapping("/all/{id}")
+    public List<User> findUsers(@PathVariable("id") int id) {
+        return userRepository.findByPlanId(id);
     }
 
     @PostMapping(path = "/add", consumes = { "application/json" }, produces = "application/json") // Map ONLY POST

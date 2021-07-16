@@ -6,74 +6,73 @@ import Nav from "../Screens/Nav";
 import "./SearchPage.css";
 
 const SearchPage = () => {
-  const base_url = "https://image.tmdb.org/t/p/original/";
-  const [movies, setMovies] = useState([]);
+	const [movies, setMovies] = useState([]);
 
-  const [modalVisibility, setModalVisibility] = useState(false);
-  const [movieSelected, setMovieSelection] = useState({});
+	const [modalVisibility, setModalVisibility] = useState(false);
+	const [movieSelected, setMovieSelection] = useState({});
 
-  useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(
-        "https://api.themoviedb.org/3/discover/tv?api_key=896c8566fc255f7c52f6ea6bd2901188&with_networks=213"
-      );
-      setMovies(request.data.results);
-      return request;
-    }
+	const { movie } = useParams();
 
-    fetchData();
-  }, []);
+	useEffect(() => {
+		async function fetchData() {
+			const request = await axios.get(
+				`http://localhost:8080/api/movie/${movie}`
+			);
+			setMovies(request.data);
+			return request;
+		}
 
-  const handleClick = (movie) => {
-    setModalVisibility(true);
-    setMovieSelection(movie);
-  };
-  return (
-    <>
-      <Nav />
-      <section className="row">
-        <div
-          style={{
-            marginBottom: 150,
-          }}
-        ></div>
+		fetchData();
+	}, []);
 
-        <div className="search_container">
-          <>
-            {movies.map((movie) => (
-              <img
-                key={movie.id}
-                onClick={() => handleClick(movie)}
-                // className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-                src={`${base_url}${movie.backdrop_path}
-                `}
-                className={`search__posterLarge`}
-                // src={movie.poster}
-                loading="lazy"
-                alt={movie.name}
-                style={{
-                  cursor: "pointer",
-                }}
-              />
-            ))}
-          </>
+	const handleClick = (movie) => {
+		setModalVisibility(true);
+		setMovieSelection(movie);
+	};
+	return (
+		<>
+			<Nav />
+			<section className="row">
+				<div
+					style={{
+						marginBottom: 150,
+					}}
+				></div>
 
-          {!movies && (
-            <h1 style={{ color: "white" }}>
-              {" "}
-              No Movies/Series Found, Please check the name{" "}
-            </h1>
-          )}
-        </div>
-        {modalVisibility && (
-          <MovieModal
-            {...movieSelected}
-            setModalVisibility={setModalVisibility}
-          />
-        )}
-      </section>
-    </>
-  );
+				<div className="search_container">
+					<>
+						{movies &&
+							movies.map((movie) => (
+								<img
+									key={movie.id}
+									onClick={() => handleClick(movie)}
+									className={`search__posterLarge`}
+									src={movie.poster.posterUrl}
+									loading="lazy"
+									alt={movie.name}
+									style={{
+										cursor: "pointer",
+									}}
+								/>
+							))}
+					</>
+
+					{!movies && (
+						<h1 style={{ color: "white" }}>
+							{" "}
+							No Movies/Series Found, Please check the name{" "}
+						</h1>
+					)}
+				</div>
+				{modalVisibility && (
+					<MovieModal
+						{...movieSelected}
+						setModalVisibility={setModalVisibility}
+					/>
+				)}
+			</section>
+		</>
+	);
 };
 
 export default SearchPage;
