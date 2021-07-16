@@ -52,6 +52,7 @@ export default function SignUp() {
 				plan: value === "user" ? plan1 : plan2,
 			})
 			.then(function (response) {
+				localStorage.setItem("useristhere", "user");
 				history.push("/browse");
 			})
 			.catch((e) => setError(e.message));

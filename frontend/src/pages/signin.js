@@ -37,6 +37,7 @@ export default function SignIn() {
 							response.data[i].email === emailAddress &&
 							response.data[i].password === password
 						) {
+							localStorage.setItem("useristhere", "user");
 							history.push("/browse");
 						} else {
 							setError("No user found");

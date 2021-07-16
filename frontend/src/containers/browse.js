@@ -23,12 +23,37 @@ const Browse = () => {
 				/>
 			</div>
 
-			{/* <Row
-				title="Trending Now"
-				id="TN"
-				fetchUrl={requests.fetchTrending}
+			<Row
+				title="Marvel Movies"
+				id="MR"
+				fetchUrl={requests.fetchMarvel}
 			/>
-			<Row title="Top Rated" id="TR" fetchUrl={requests.fetchTopRated} />
+
+			<Row
+				title="Disney Movies"
+				id="DS"
+				fetchUrl={requests.fetchDisney}
+			/>
+
+			<Row
+				title="Movies After 2015"
+				id="FI"
+				fetchUrl={requests.fetchMovieAfter2015}
+			/>
+
+			<Row
+				title="Comedy Movie"
+				id="CM"
+				fetchUrl={requests.fetchComedyMovies}
+			/>
+
+			<Row
+				title="Action Movie"
+				id="AM"
+				fetchUrl={requests.fetchActionMovies}
+			/>
+
+			{/* <Row title="Top Rated" id="TR" fetchUrl={requests.fetchTopRated} />
 			<Row
 				title="Action Movies"
 				id="AM"

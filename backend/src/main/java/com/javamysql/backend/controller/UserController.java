@@ -45,41 +45,28 @@ public class UserController {
         return new ResponseEntity<>(_user, HttpStatus.CREATED);
     }
 
-    // @DeleteMapping("/delete/{id}")
-    // public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") int id)
-    // {
-    // try {
-    // userRepository.deleteById(id);
-    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    // } catch (Exception e) {
-    // return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-    // }
-    // }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") int id) {
+        try {
+            userRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+        }
+    }
 
-    // @DeleteMapping("/delete/all")
-    // public ResponseEntity<HttpStatus> deleteAllTutorials() {
-    // try {
-    // userRepository.deleteAll();
-    // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    // } catch (Exception e) {
-    // return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
-    // }
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<User> updateTutorial(@PathVariable("id") int id, @RequestBody User tutorial) {
+        Optional<User> userData = userRepository.findById(id);
 
-    // }
-
-    // @PutMapping("/edit/{id}")
-    // public ResponseEntity<User> updateTutorial(@PathVariable("id") int id,
-    // @RequestBody User tutorial) {
-    // Optional<User> tutorialData = userRepository.findById(id);
-
-    // if (tutorialData.isPresent()) {
-    // User _tutorial = tutorialData.get();
-    // _tutorial.setName(tutorial.getName());
-    // _tutorial.setEmail(tutorial.getEmail());
-    // return new ResponseEntity<>(userRepository.save(_tutorial), HttpStatus.OK);
-    // } else {
-    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    // }
-    // }
+        if (userData.isPresent()) {
+            User _user = userData.get();
+            _user.setName(tutorial.getName());
+            _user.setEmail(tutorial.getEmail());
+            return new ResponseEntity<>(userRepository.save(_user), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

@@ -38,10 +38,12 @@ public class BackendApplication {
 	// planRepo.save(plan2);
 
 	// // create and save new pages
-	// userRepo.save(new User(1, "Name", "jay@gmail.com", "password", plan1));
-	// userRepo.save(new User(65, "Name 1", "ab@gmail.com", "newpassword", plan2));
-	// userRepo.save(new User(69, "Name 2", "aba@gmail.com", "123456", plan2));
-	// userRepo.save(new User(95, "Name 3", "aaav@gmail.com", "111111", plan1));
+	// userRepo.save(new User(1, "Jay Bhattarai", "jay@gmail.com", "password",
+	// plan2));
+	// userRepo.save(new User(2, "Sachin Madhesiya", "sachin@gmail.com",
+	// "newpassword", plan2));
+	// userRepo.save(new User(3, "Name 2", "aba@gmail.com", "123456", plan2));
+	// userRepo.save(new User(4, "Name 3", "aaav@gmail.com", "111111", plan1));
 	// };
 	// }
 
@@ -85,43 +87,52 @@ public class BackendApplication {
 	// "https://www.youtube.com/watch?v=xbqNb2PFKKA");
 	// Trailer trailer5 = new Trailer(1599,
 	// "https://www.youtube.com/watch?v=lPpfK1K1qNU");
+	// Trailer random = new Trailer(1500,
+	// "https://www.youtube.com/watch?v=4ZlPBCGGrU0");
 
 	// trailerRepo.save(trailer1);
 	// trailerRepo.save(trailer2);
 	// trailerRepo.save(trailer3);
 	// trailerRepo.save(trailer4);
 	// trailerRepo.save(trailer5);
+	// trailerRepo.save(random);
 
 	// Poster poster1 = new Poster(12563,
-	// "https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg");
+	// "https://database.gdriveplayer.us/cover/avengers-endgame.png");
 	// Poster poster2 = new Poster(12565,
-	// "https://m.media-amazon.com/images/M/MV5BMTYwOTEwNjAzMl5BMl5BanBnXkFtZTcwODc5MTUwMw@@._V1_SX300.jpg");
+	// "https://database.gdriveplayer.us/cover/moana-hd.png");
 	// Poster hulk = new Poster(12567,
 	// "https://image.tmdb.org/t/p/w300//qnngKqAcqfH2pBxDoKu5lxzSbTo.jpg");
 	// Poster inchulk = new Poster(12566,
 	// "https://image.tmdb.org/t/p/w300//2nBpExDoInX3VreBsIm9qOTqXs8.jpg");
 	// Poster ageOfUltron = new Poster(12574,
 	// "https://m.media-amazon.com/images/M/MV5BMTM4OGJmNWMtOTM4Ni00NTE3LTg3MDItZmQxYjc4N2JhNmUxXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_.jpg");
+	// Poster blank = new Poster(12000,
+	// "https://images.unsplash.com/photo-1497514440240-3b870f7341f0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8cG9zdGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
 
 	// posterRepo.save(poster1);
 	// posterRepo.save(poster2);
 	// posterRepo.save(hulk);
 	// posterRepo.save(inchulk);
 	// posterRepo.save(ageOfUltron);
+	// posterRepo.save(blank);
 
 	// // create and save new pages
-	// movieRepo.save(new Movie(18, "Avenger", "This is Endgame", "20200518",
+	// movieRepo.save(new Movie(101, "Avenger", "This is Endgame", "20200518",
 	// studio1, trailer1, poster1));
-	// movieRepo.save(new Movie(19, "Moana", "This is Moana", "20160503", studio2,
+	// movieRepo.save(new Movie(102, "Moana", "This is Moana", "20160503", studio2,
 	// trailer2, poster2));
-	// movieRepo.save(new Movie(20, "Hulk", "This is hulk movie", "20150503",
+	// movieRepo.save(new Movie(103, "Hulk", "This is hulk movie", "20150503",
 	// studio3, trailer3, hulk));
-	// movieRepo.save(new Movie(21, "Incredible Hulk", "This is Incredible Hulk",
+	// movieRepo.save(new Movie(104, "Incredible Hulk", "This is Incredible Hulk",
 	// "20140503", studio2, trailer4,
 	// inchulk));
-	// movieRepo.save(new Movie(22, "Avengers: Age Of Ultron", "This is Avengers:
+	// movieRepo.save(new Movie(105, "Avengers: Age Of Ultron", "This is Avengers
 	// Age Of Ultron", "20110303",
 	// studio5, trailer5, ageOfUltron));
+	// movieRepo
+	// .save(new Movie(106, "Random Movie", "This is a random movie", "20190303",
+	// studio5, random, blank));
 	// };
 	// }
 

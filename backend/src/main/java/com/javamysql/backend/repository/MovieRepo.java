@@ -20,4 +20,17 @@ public interface MovieRepo extends JpaRepository<Movie, Integer> {
     @Query(value = "SELECT * FROM MOVIE WHERE movie.title LIKE %:movie%", nativeQuery = true)
     List<Movie> findByMovie(@Param("movie") String movie);
 
+    // get the movie with specific studio
+
+    @Query(value = "select * from movie where studio_id = (select s.studio_id from studio s where s.studio_name = :studio)", nativeQuery = true)
+    List<Movie> findByMovieStudio(@Param("studio") String studio);
+
+    // get movie after 2015
+    @Query(value = "SELECT * FROM MOVIE WHERE YEAR(movie.release_date) > :date", nativeQuery = true)
+    List<Movie> findByMovieDate(@Param("date") String date);
+
+    // get movie with specific genre
+    @Query(value = "select * from movie where studio_id = (select s.studio_id from studio s where  genre_id = (select g.genre_id from genre g where genre_name = :genre)  );", nativeQuery = true)
+    List<Movie> findByMovieGenre(@Param("genre") String genre);
+
 }
