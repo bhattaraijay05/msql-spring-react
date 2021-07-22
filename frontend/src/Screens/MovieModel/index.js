@@ -34,6 +34,9 @@ const MovieModal = ({
 		setModalVisibility(false);
 		window.location.reload();
 	};
+	const updateMovie = () => {
+		history.push("/update/" + movieId);
+	};
 
 	return (
 		<div className="presentation" role="presentation">
@@ -62,14 +65,24 @@ const MovieModal = ({
 						</p>
 
 						{admin && (
-							<div>
-								<button
-									className="play__button"
-									onClick={deleteMovie}
-								>
-									Delete
-								</button>
-							</div>
+							<>
+								<div>
+									<button
+										className="play__button"
+										onClick={deleteMovie}
+									>
+										Delete
+									</button>
+								</div>
+								<div>
+									<button
+										className="play__button"
+										onClick={updateMovie}
+									>
+										Update
+									</button>
+								</div>
+							</>
 						)}
 
 						<h2 className="modal__title">{name ? name : name}</h2>

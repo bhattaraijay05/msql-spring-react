@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Form } from "../components";
 import { HeaderContainer } from "../containers/header";
 import { FooterContainer } from "../containers/footer";
@@ -9,64 +9,42 @@ import { Spinner } from "beautiful-react-ui";
 import * as ROUTES from "../constants/routes";
 import { TextField } from "@material-ui/core";
 
-export default function AddMovie() {
+export default function UpdateMovie() {
 	const history = useHistory();
-
+	const id = useParams();
+	console.log(id.id);
 	const [name, setName] = useState("");
 	const [description, setDescription] = useState("");
-	const [date, setDate] = useState("");
 	const [value, setValue] = React.useState("user");
 	const [error, setError] = useState("");
 
 	const [showSpinner, setShowSpinner] = useState(false);
 
-	const isInvalid = name === "" || date === "" || description === "";
+	const isInvalid = name === "" || description === "";
 
-	const handleSignup = (event) => {
+	const handleUpdate = (event) => {
 		event.preventDefault();
-		setShowSpinner(true);
-
 		axios
-			.post("http://localhost:8080/api/add", {
+			.put(`http://localhost:8080/api/edit/${id.id}`, {
 				name,
 				description,
-				releaseDate: date,
-				studio: {
-					studioId: 154,
-					studioName: "Marvel",
-					genre: {
-						genreId: 145,
-						genreName: "comedy",
-					},
-				},
-				trailer: {
-					trailerId: 1599,
-					trailerUrl: "https://www.youtube.com/wch?v=TcMBFSGVi1c",
-				},
-				poster: {
-					posterId: 12000,
-					posterUrl: "http://localhost:8080/public/a.jpg",
-				},
 			})
-			.then(function (response) {
-				history.push("/browse");
+			.then(() => {
+				history.push("/browse/admin");
 			})
-			.catch((e) => setError(e.message));
-
-		setShowSpinner(false);
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 
-	const handleChange = (event) => {
-		setValue(event.target.value);
-	};
 	return (
 		<>
 			<HeaderContainer>
 				<Form>
-					<Form.Title>Add</Form.Title>
+					<Form.Title>Update</Form.Title>
 					{error && <Form.Error>{error}</Form.Error>}
 
-					<Form.Base onSubmit={handleSignup} method="POST">
+					<Form.Base onSubmit={handleUpdate} method="POST">
 						<Form.Input
 							placeholder="Name"
 							value={name}
@@ -79,17 +57,7 @@ export default function AddMovie() {
 								setDescription(target.value)
 							}
 						/>
-						<TextField
-							id="date"
-							label="Release Date"
-							type="date"
-							defaultValue="2017-05-24"
-							InputLabelProps={{
-								shrink: true,
-							}}
-							onChange={({ target }) => setDate(target.value)}
-							style={{ color: "#fff", backgroundColor: "#fff" }}
-						/>
+
 						{showSpinner && (
 							<div
 								style={{
@@ -107,7 +75,7 @@ export default function AddMovie() {
 							type="submit"
 							data-testid="sign-up"
 						>
-							Add Movie
+							Update Movie
 						</Form.Submit>
 					</Form.Base>
 				</Form>

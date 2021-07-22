@@ -1,6 +1,14 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Home, SignIn, SignUp, Main, SearchPage, AddMovie } from "./pages";
+import {
+	Home,
+	SignIn,
+	SignUp,
+	Main,
+	SearchPage,
+	AddMovie,
+	UpdateMovie,
+} from "./pages";
 
 function App() {
 	return (
@@ -28,6 +36,9 @@ function App() {
 					</Route>
 					<Route exact path="/add">
 						<AddMovie />
+					</Route>
+					<Route exact path="/update/:id">
+						<UpdateMovie />
 					</Route>
 				</Switch>
 			</Router>
