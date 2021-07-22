@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./MovieModel.css";
 import Youtube from "react-youtube";
+import { useParams, useHistory } from "react-router-dom";
 import movieTrailer from "movie-trailer";
 import CancelIcon from "@material-ui/icons/Cancel";
+import axios from "axios";
 
 const MovieModal = ({
 	poster,
@@ -11,8 +13,11 @@ const MovieModal = ({
 	releaseDate,
 	setModalVisibility,
 	trailer,
+	movieId,
 }) => {
 	const [trailerUrl, setTrailerUrl] = useState("");
+	const { admin } = useParams();
+	const history = useHistory();
 	const opts = {
 		height: "390",
 		width: "100%",
@@ -22,6 +27,12 @@ const MovieModal = ({
 	};
 	const randomPorcentaje = () => {
 		return Math.floor(Math.random() * 100);
+	};
+
+	const deleteMovie = () => {
+		axios.delete(`http://localhost:8080/api/delete/${movieId}`);
+		setModalVisibility(false);
+		window.location.reload();
 	};
 
 	return (
@@ -49,6 +60,18 @@ const MovieModal = ({
 							</span>{" "}
 							{releaseDate}
 						</p>
+
+						{admin && (
+							<div>
+								<button
+									className="play__button"
+									onClick={deleteMovie}
+								>
+									Delete
+								</button>
+							</div>
+						)}
+
 						<h2 className="modal__title">{name ? name : name}</h2>
 						<p className="modal__overview">{description}</p>
 					</div>

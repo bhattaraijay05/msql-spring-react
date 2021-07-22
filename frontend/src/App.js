@@ -23,6 +23,9 @@ function App() {
 					<Route exact path="/browse">
 						<Main />
 					</Route>
+					<Route exact path="/browse/:admin">
+						<Main />
+					</Route>
 					<Route exact path="/add">
 						<AddMovie />
 					</Route>
