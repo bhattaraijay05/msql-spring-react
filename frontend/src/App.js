@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Home, SignIn, SignUp, Main, SearchPage } from "./pages";
+import { Home, SignIn, SignUp, Main, SearchPage, AddMovie } from "./pages";
 
 function App() {
 	return (
@@ -22,6 +22,9 @@ function App() {
 					</Route>
 					<Route exact path="/browse">
 						<Main />
+					</Route>
+					<Route exact path="/add">
+						<AddMovie />
 					</Route>
 				</Switch>
 			</Router>

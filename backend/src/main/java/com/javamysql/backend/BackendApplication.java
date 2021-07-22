@@ -1,5 +1,7 @@
 package com.javamysql.backend;
 
+import java.util.concurrent.TimeUnit;
+
 import com.javamysql.backend.model.Genre;
 import com.javamysql.backend.model.Movie;
 import com.javamysql.backend.model.Plan;
@@ -19,11 +21,23 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.*;
+import org.springframework.http.CacheControl;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @SpringBootApplication
 public class BackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
+	}
+
+	@Configuration
+	public class WebConfiguration extends WebMvcConfigurationSupport {
+
+		@Override
+		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+			registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+		}
 	}
 
 	// @Bean
@@ -107,8 +121,7 @@ public class BackendApplication {
 	// "https://image.tmdb.org/t/p/w300//2nBpExDoInX3VreBsIm9qOTqXs8.jpg");
 	// Poster ageOfUltron = new Poster(12574,
 	// "https://m.media-amazon.com/images/M/MV5BMTM4OGJmNWMtOTM4Ni00NTE3LTg3MDItZmQxYjc4N2JhNmUxXkEyXkFqcGdeQXVyNTgzMDMzMTg@._V1_.jpg");
-	// Poster blank = new Poster(12000,
-	// "https://images.unsplash.com/photo-1497514440240-3b870f7341f0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8cG9zdGVyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+	// Poster blank = new Poster(12000, "http://localhost:8080/public/a.jpg");
 
 	// posterRepo.save(poster1);
 	// posterRepo.save(poster2);
